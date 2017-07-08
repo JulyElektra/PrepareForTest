@@ -1,19 +1,19 @@
 package com.example.elekt.preparefortest.Model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by elekt on 07.07.2017.
  */
 
-class Task {
+public class Task {
+    private Long id;
     private String question;
     private Map<String, Boolean> possibleAnswers = new HashMap<>();
     private String explanation;
+    private User creator;
+    private Boolean isApproved;
 
     public Task(String question, Map<String, Boolean> possibleAnswers, String explanation) {
         this.question = question;
@@ -33,7 +33,7 @@ class Task {
         return possibleAnswers;
     }
 
-    public void addPossibleAnswers(String possibleAnswer, boolean isCorrect) {
+    public void addPossibleAnswers(String possibleAnswer, Boolean isCorrect) {
         possibleAnswers.put(possibleAnswer, isCorrect);
     }
 

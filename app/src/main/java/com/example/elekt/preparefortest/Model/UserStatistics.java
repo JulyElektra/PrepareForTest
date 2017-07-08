@@ -3,6 +3,7 @@ package com.example.elekt.preparefortest.Model;
 import android.content.Intent;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 
 public class UserStatistics {
-    int userID;
-    Map<Test, Integer> testsHistory;
-    int rate;
+    private Integer userID;
+    private Map<Test, Integer> testsHistory = new HashMap<>();
+    private Integer rate;
 }

@@ -8,7 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.elekt.preparefortest.Model.INameable;
+import com.example.elekt.preparefortest.Model.Model;
+import com.example.elekt.preparefortest.Model.ProgrammingLanguage;
 import com.example.elekt.preparefortest.R;
+
+import java.util.Collection;
 
 /**
  * Created by elekt on 03.07.2017.
@@ -16,19 +21,33 @@ import com.example.elekt.preparefortest.R;
 
 public class MainScreen extends Activity {
 
-    private String[] programmingLanguages = {"All", "Java", "PHP", "C++", "Python", "C#"};
-    private String[] levels = {"All", "Junior" , "Middle" ,"Senior"};
-    private String[] topics = {"All", "Input and Output", "MultiThreading", "Loops"};
+//    private String[] programmingLanguages = {"All", "Java", "PHP", "C++", "Python", "C#"};
+//    private String[] levels = {"All", "Junior" , "Middle" ,"Senior"};
+//    private String[] topics = {"All", "Input and Output", "MultiThreading", "Loops"};
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen_layout);
+        Model model = new Model(MainScreen.this);
+        String[] programmingLanguages = getNames(model.getAllProgrammingLanguages());
         setSpinners(R.id.spinnerChooseProgLang, programmingLanguages, "Choose Programming language");
+        String[] levels = getNames(model.getAllLevels());
         setSpinners(R.id.spinnerChooseLevel, levels, "Choose your level");
+        String[] topics = getNames(model.getAllTopics());
         setSpinners(R.id.spinnerChooseTopic, topics, "Choose topic");
 
+    }
+
+    private String[] getNames(Collection<? extends INameable> items) {
+        String[] itemNames = new String[items.size()];
+        int n = 0;
+        for (INameable item: items) {
+            itemNames[n] = item.getName();
+            n++;
+        }
+        return itemNames;
     }
 
     public void onClickSearch(View view) {

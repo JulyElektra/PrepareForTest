@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.elekt.preparefortest.Model.UserAccounts;
+import com.example.elekt.preparefortest.Presenter.UserManager;
 import com.example.elekt.preparefortest.R;
 
 /**
@@ -27,8 +28,10 @@ public class Login extends Activity {
         String login = loginEditText.getText().toString();
         EditText passwordEditText = findViewById(R.id.editTextPassword);
         String password = passwordEditText.getText().toString();
-        if (UserAccounts.isValid(login, password))  {
+        if (UserManager.isValid(login, password, Login.this))  {
             startActivity(new Intent(this, MainScreen.class));
+        } else {
+            Toast.makeText(Login.this, "Login or password is wrong!", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -5,6 +5,6 @@ package com.example.elekt.preparefortest.Model;
  */
 
 public class Statistics {
-    static int numOfPassedTests;
-    static int numOfSuccessfullyPassedTests;
+    private static int numOfPassedTests;
+    private static int numOfSuccessfullyPassedTests;
 }

@@ -8,10 +8,16 @@ import java.util.logging.Level;
  */
 
 public interface IModel {
-    Collection<String> getAllProgrammingLanguages() ;
-    Collection<Level> getAllLevels();
-    Collection<String> getAllTopics();
+    Collection<ProgrammingLanguage> getAllProgrammingLanguages() ;
+    Collection<com.example.elekt.preparefortest.Model.Level> getAllLevels();
+    Collection<Topic> getAllTopics();
     Collection<Test> getTests(String programmingLanguage, String level, String topic);
-    UserAccount getUser(String login);
     Collection<Task> getTasks(Test test);
+    void addTest(Test newTest);
+    void addTask(Test test, Task newTask);
+    Collection<User> getUsers();
+    User getUser(String login);
+    void addUser(String login, String password);
+    void blockUser(User user);
+
 }

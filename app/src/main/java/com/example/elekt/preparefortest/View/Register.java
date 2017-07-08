@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.elekt.preparefortest.Model.UserAccounts;
+import com.example.elekt.preparefortest.Model.User;
+import com.example.elekt.preparefortest.Presenter.UserManager;
 import com.example.elekt.preparefortest.R;
 
 /**
@@ -28,11 +29,11 @@ public class Register extends Activity {
         String login = loginTextView.getText().toString();
         EditText passTextView = findViewById(R.id.editTextRegPassword);
         String password = passTextView.getText().toString();
-        if (UserAccounts.isExists(login)) {
+        if (UserManager.isExists(login, Register.this)) {
             Toast.makeText(view.getContext(), "Account with such a login exists!",
                     Toast.LENGTH_LONG).show();
         } else {
-            UserAccounts.getAccounts().put(login, password);
+            UserManager.addUser(login, password, Register.this);
             Toast.makeText(view.getContext(), "Account created!",
                     Toast.LENGTH_LONG).show();
             startActivity(new Intent(view.getContext(), Login.class));

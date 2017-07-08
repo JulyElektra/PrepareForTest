@@ -1,14 +1,16 @@
 package com.example.elekt.preparefortest.Model;
 
+import android.util.Log;
+
 /**
- * Created by elekt on 07.07.2017.
+ * Created by elekt on 08.07.2017.
  */
 
-public class ProgrammingLanguage implements INameable {
+public class Level implements INameable {
     private Long id;
     private String name;
 
-    public ProgrammingLanguage(Long id, String name) {
+    public Level(Long id, String name) {
         this.id = id;
         this.name = name;
     }
