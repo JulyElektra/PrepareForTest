@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewChooseProgLang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Programming language" />
+
+    <Spinner
+        android:id="@+id/spinnerChooseProgLang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/textViewChooseLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level" />
+
+    <Spinner
+        android:id="@+id/spinnerChooseLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewTopic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Topic" />
+
+    <Spinner
+        android:id="@+id/spinnerChooseTopic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:onClick="onClickSearch"/>
+
+</LinearLayout>
