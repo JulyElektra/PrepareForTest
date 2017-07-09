@@ -45,4 +45,19 @@
         android:text="Search"
         android:onClick="onClickSearch"/>
 
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <fragment
+            android:id="@+id/fragmentForListOfTests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.elekt.preparefortest.View.Fragments.TestsListFragmentRecycler">
+        </fragment>
+
+    </FrameLayout>
+
+
 </LinearLayout>

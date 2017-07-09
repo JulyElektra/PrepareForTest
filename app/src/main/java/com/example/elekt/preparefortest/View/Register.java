@@ -25,9 +25,9 @@ public class Register extends Activity {
     }
 
     public void onClickRegisterOK(View view) {
-        EditText loginTextView = findViewById(R.id.editTextRegLogin);
+        EditText loginTextView = (EditText) findViewById(R.id.editTextRegLogin);
         String login = loginTextView.getText().toString();
-        EditText passTextView = findViewById(R.id.editTextRegPassword);
+        EditText passTextView = (EditText) findViewById(R.id.editTextRegPassword);
         String password = passTextView.getText().toString();
         if (UserManager.isExists(login, Register.this)) {
             Toast.makeText(view.getContext(), "Account with such a login exists!",

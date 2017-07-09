@@ -3,7 +3,7 @@ package com.example.elekt.preparefortest.Model;
 import android.content.Context;
 
 import com.example.elekt.preparefortest.Model.SQLite.DBHelper;
-import com.example.elekt.preparefortest.Presenter.DBManager;
+import com.example.elekt.preparefortest.Model.SQLite.DBManager;
 
 import java.util.Collection;
 
@@ -36,12 +36,12 @@ public class Model implements IModel {
 
     @Override
     public Collection<Test> getTests(String programmingLanguage, String level, String topic) {
-        return null;
+        return dbManager.loadTests(programmingLanguage, level, topic);
     }
 
     @Override
     public Collection<Task> getTasks(Test test) {
-        return null;
+        return dbManager.loadTasks(test.getId());
     }
 
     @Override

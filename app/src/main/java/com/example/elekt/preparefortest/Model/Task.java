@@ -15,11 +15,35 @@ public class Task {
     private User creator;
     private Boolean isApproved;
 
-    public Task(String question, Map<String, Boolean> possibleAnswers, String explanation) {
+    public Task(Long id, String question, Map<String, Boolean> possibleAnswers, String explanation, User creator, Boolean isApproved) {
+        this.id = id;
         this.question = question;
-        this.possibleAnswers = possibleAnswers;
         this.explanation = explanation;
+        this.creator = creator;
+        this.isApproved = isApproved;
+        if (possibleAnswers == null) {
+            this.possibleAnswers = new HashMap<>();
+        } else {
+            this.possibleAnswers = possibleAnswers;
+        }
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public Boolean getApproved() {
+        return isApproved;
+    }
+//    public Task(String question, Map<String, Boolean> possibleAnswers, String explanation) {
+//        this.question = question;
+//        this.possibleAnswers = possibleAnswers;
+//        this.explanation = explanation;
+//    }
 
     public String getQuestion() {
         return question;
@@ -30,6 +54,9 @@ public class Task {
     }
 
     public Map<String, Boolean> getPossibleAnswers() {
+        if (possibleAnswers == null) {
+            return new HashMap<>();
+        }
         return possibleAnswers;
     }
 

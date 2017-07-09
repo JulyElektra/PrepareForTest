@@ -24,9 +24,9 @@ public class Login extends Activity {
     }
 
     public void onClickOKLogin(View view) {
-        EditText loginEditText = findViewById(R.id.editTextLogin);
+        EditText loginEditText = (EditText) findViewById(R.id.editTextLogin);
         String login = loginEditText.getText().toString();
-        EditText passwordEditText = findViewById(R.id.editTextPassword);
+        EditText passwordEditText = (EditText) findViewById(R.id.editTextPassword);
         String password = passwordEditText.getText().toString();
         if (UserManager.isValid(login, password, Login.this))  {
             startActivity(new Intent(this, MainScreen.class));
