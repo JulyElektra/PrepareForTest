@@ -103,15 +103,30 @@ public class DBManager {
     public Collection<Test> loadTests(String programmingLanguageStr, String levelStr, String topicStr) {
         SQLiteDatabase database = helper.getWritableDatabase();
         if (programmingLanguageStr == "All"){
-            //TODO
+
         }
         ProgrammingLanguage programmingLanguage = loadProgrammingLanguage(programmingLanguageStr);
         Topic topic = loadTopic(topicStr);
         Level level = loadLevel(levelStr);
+
+        String equalsTopicId = " = '" + topic.getId() + "'";
+        String equalsLevelId = " = '" + level.getId() + "'";
+        String equalsProgrammingLanguageId = " = '" + programmingLanguage.getId() + "'";
+
+        if (programmingLanguageStr.equals("All")) {
+            equalsProgrammingLanguageId = " IS NOT NULL ";
+        }
+        if (levelStr.equals("All")) {
+            equalsLevelId = " IS NOT NULL ";
+        }
+        if (topicStr.equals("All")) {
+            equalsTopicId = " IS NOT NULL ";
+        }
+
         Cursor cursor = database.query("tests", null,
-                "id_programming_language = '" + programmingLanguage.getId() + "' AND " +
-                        "id_topic = '" + topic.getId() + "' AND " +
-                        "id_level = '" + level.getId() + "'" ,null,null,null,null);
+                "id_programming_language " + equalsProgrammingLanguageId + " AND " +
+                        "id_topic " + equalsTopicId + " AND " +
+                        "id_level " + equalsLevelId ,null,null,null,null);
         Collection<Test> tests = new ArrayList<>();
         while (cursor.moveToNext()) {
             Long id = Long.parseLong(cursor.getString(cursor.getColumnIndex("id")));
