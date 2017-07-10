@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.elekt.preparefortest.Model.INameable;
 import com.example.elekt.preparefortest.Model.Model;
 import com.example.elekt.preparefortest.Model.Test;
+import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
 import com.example.elekt.preparefortest.View.Fragments.TestsListFragmentRecycler;
 
@@ -38,19 +39,21 @@ public class MainScreen extends Activity {
         String[] topics = getNames(model.getAllTopics());
         setSpinners(R.id.spinnerChooseTopic, topics, "Choose topic");
 
-
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = new TestsListFragmentRecycler();
         Spinner s3 = (Spinner)findViewById(R.id.spinnerChooseTopic);
         Spinner s2 = (Spinner)findViewById(R.id.spinnerChooseLevel);
         Spinner s1 = (Spinner)findViewById(R.id.spinnerChooseProgLang);
         Collection<Test> tests = new Model(MainScreen.this).getTests(s1.getSelectedItem().toString(),
                 s2.getSelectedItem().toString(), s3.getSelectedItem().toString());
-        ((TestsListFragmentRecycler) fragment).setTests(tests);
+//        ((TestsListFragmentRecycler) fragment).setTests(tests);
+        TestsManager.setTestsCurrent(tests);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new TestsListFragmentRecycler();
+
 
         fragmentTransaction.add(R.id.fragmentContainer, fragment, "frag_teg");
+        fragmentTransaction.commit();
 
     }
 

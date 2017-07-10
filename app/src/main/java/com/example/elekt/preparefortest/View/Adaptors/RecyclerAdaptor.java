@@ -39,13 +39,13 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerHolder>  {
 
     @Override
     public void onBindViewHolder(RecyclerHolder holder, int position) {
-        Test[] testsArray = (Test[]) tests.toArray();
-        Test test = testsArray[position];
-        holder.topic.setText(test.getTopic().getName());
+        Object[] testsArray = tests.toArray();
+        Test test = (Test) testsArray[position];
+        holder.name.setText(test.getName());
         holder.programmingLanguage.setText(test.getProgrammingLanguage().getName());
         holder.level.setText(test.getLevel().getName());
-        holder.timeBounds.setText(test.getTimeLimitsMin());
-        holder.numOfQuestions.setText(test.getTasks().size());
+        holder.timeBounds.setText(test.getTimeLimitsMin().toString());
+        holder.numOfQuestions.setText(test.getTasks().size() + "");
 
     }
 

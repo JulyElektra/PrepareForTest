@@ -11,7 +11,7 @@ import com.example.elekt.preparefortest.R;
  */
 
 public class RecyclerHolder extends RecyclerView.ViewHolder {
-    TextView topic;
+    TextView name;
     TextView level;
     TextView programmingLanguage;
     TextView timeBounds;
@@ -19,7 +19,7 @@ public class RecyclerHolder extends RecyclerView.ViewHolder {
 
     public RecyclerHolder(View itemView) {
         super(itemView);
-        topic = (TextView) itemView.findViewById(R.id.testTopicTestList);
+        name = (TextView) itemView.findViewById(R.id.testNameTestList);
         level = (TextView) itemView.findViewById(R.id.testLevelTestList);
         programmingLanguage = (TextView) itemView.findViewById(R.id.testPrLanguageTestList);
         timeBounds = (TextView) itemView.findViewById(R.id.testTimeBoundsTestList);

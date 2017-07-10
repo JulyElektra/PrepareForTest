@@ -102,6 +102,9 @@ public class DBManager {
 
     public Collection<Test> loadTests(String programmingLanguageStr, String levelStr, String topicStr) {
         SQLiteDatabase database = helper.getWritableDatabase();
+        if (programmingLanguageStr == "All"){
+            //TODO
+        }
         ProgrammingLanguage programmingLanguage = loadProgrammingLanguage(programmingLanguageStr);
         Topic topic = loadTopic(topicStr);
         Level level = loadLevel(levelStr);

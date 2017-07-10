@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.elekt.preparefortest.Model.Test;
+import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
 import com.example.elekt.preparefortest.View.Adaptors.RecyclerAdaptor;
 
@@ -27,17 +28,18 @@ public class TestsListFragmentRecycler extends Fragment {
     RecyclerView.LayoutManager manager;
     Context context;
     View view;
-    Collection<Test> tests;
-
-    public void setTests(Collection<Test> tests) {
-        this.tests = tests;
-    }
+//    Collection<Test> tests;
+//
+//    public void setTests(Collection<Test> tests) {
+//        this.tests = tests;
+//    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tests_list_fragment_recycler, container, false);
         context = view.getContext();
+        Collection<Test> tests = TestsManager.getTestsCurrent();
         adaptor = new RecyclerAdaptor(tests);
         manager = new LinearLayoutManager(this.getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerForTestsList);

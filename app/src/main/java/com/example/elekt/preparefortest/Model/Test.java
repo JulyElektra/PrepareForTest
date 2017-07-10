@@ -32,7 +32,12 @@ public class Test {
         } else {
             this.tasks = tasks;
         }
-        this.timeLimitsMin = timeLimitsMin;
+        if (timeLimitsMin == null) {
+            this.timeLimitsMin = 12;
+        } else {
+            this.timeLimitsMin = timeLimitsMin;
+        }
+
         this.creator = creator;
         this.isApproved = isApproved;
         this.successfullyPassedPercentage = successfullyPassedPercentage;

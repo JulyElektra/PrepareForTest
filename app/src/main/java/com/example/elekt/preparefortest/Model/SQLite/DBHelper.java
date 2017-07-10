@@ -90,11 +90,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(id_user_creator) REFERENCES users(id)," +
                 "FOREIGN KEY(id_programming_language) REFERENCES programming_languages(id));");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Abstract Factory', 'TRUE', 1, 1, 1, 1, 20);");
+                "VALUES(90, 'Abstract Factory', 'TRUE', 1, 2, 1, 2, 20);");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Singleton', 'TRUE', 1, 1, 1, 1, 20);");
+                "VALUES(90, 'Singleton', 'TRUE', 1, 3, 1, 3, 45);");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Builder', 'TRUE', 1, 1, 1, 1, 20);");
+                "VALUES(90, 'Builder', 'TRUE', 1, 4, 1, 4, 60);");
 
         db.execSQL("CREATE TABLE tasks (" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +

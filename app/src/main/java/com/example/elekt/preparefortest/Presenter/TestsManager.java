@@ -15,15 +15,22 @@ import java.util.HashSet;
 
 public class TestsManager implements IManager {
     private static TestsManager testManager;
-//    private Collection<Level> levels = new ArrayList<>();
-//    private Collection<ProgrammingLanguage> programmingLanguages = new ArrayList<>();
-//    private Collection<Topic> topics = new ArrayList<>();
+    private static Collection<Test> testsCurrent;
 
     static {
         testManager = new TestsManager();
     }
 
     private TestsManager() {
+    }
+
+
+    public static Collection<Test> getTestsCurrent() {
+        return testsCurrent;
+    }
+
+    public static void setTestsCurrent(Collection<Test> testsCurrent) {
+        TestsManager.testsCurrent = testsCurrent;
     }
 
     public static TestsManager getInstance() {
@@ -47,15 +54,4 @@ public class TestsManager implements IManager {
 
     }
 
-//    public void addLevel(long id, String level) {
-//        levels.add(new Level(id, level));
-//    }
-//
-//    public void addProgrammingLanguage(long id, String programingLanguage) {
-//        programmingLanguages.add(new ProgrammingLanguage(id, programingLanguage));
-//    }
-//
-//    public void addTopic(long id, String topic, ProgrammingLanguage programmingLanguage) {
-//        topics.add(new Topic(id, topic, programmingLanguage));
-//    }
 }
