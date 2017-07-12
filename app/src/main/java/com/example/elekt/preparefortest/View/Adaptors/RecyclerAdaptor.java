@@ -49,8 +49,20 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerHolder>  {
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return tests.size();
     }
+
+    public void updateList (Collection<Test> tests) {
+        if (tests != null) {
+            this.tests.clear();
+            this.tests.addAll(tests);
+            notifyDataSetChanged();
+        }
+    }
+
+
 }

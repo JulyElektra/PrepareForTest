@@ -105,13 +105,13 @@ public class DBManager {
         if (programmingLanguageStr == "All"){
 
         }
-        ProgrammingLanguage programmingLanguage = loadProgrammingLanguage(programmingLanguageStr);
-        Topic topic = loadTopic(topicStr);
-        Level level = loadLevel(levelStr);
+        ProgrammingLanguage programmingLanguageFilter = loadProgrammingLanguage(programmingLanguageStr);
+        Topic topicFilter = loadTopic(topicStr);
+        Level levelFilter = loadLevel(levelStr);
 
-        String equalsTopicId = " = '" + topic.getId() + "'";
-        String equalsLevelId = " = '" + level.getId() + "'";
-        String equalsProgrammingLanguageId = " = '" + programmingLanguage.getId() + "'";
+        String equalsTopicId = " = '" + topicFilter.getId() + "'";
+        String equalsLevelId = " = '" + levelFilter.getId() + "'";
+        String equalsProgrammingLanguageId = " = '" + programmingLanguageFilter.getId() + "'";
 
         if (programmingLanguageStr.equals("All")) {
             equalsProgrammingLanguageId = " IS NOT NULL ";
@@ -129,6 +129,12 @@ public class DBManager {
                         "id_level " + equalsLevelId ,null,null,null,null);
         Collection<Test> tests = new ArrayList<>();
         while (cursor.moveToNext()) {
+            Long idProgrammingLanguage = Long.parseLong(cursor.getString(cursor.getColumnIndex("id_programming_language")));
+            Long idTopic = Long.parseLong(cursor.getString(cursor.getColumnIndex("id_topic")));
+            Long idLevel = Long.parseLong(cursor.getString(cursor.getColumnIndex("id_level")));
+            ProgrammingLanguage programmingLanguage = loadProgrammingLanguage(idProgrammingLanguage);
+            Topic topic = loadTopic(idTopic);
+            Level level = loadLevel(idLevel);
             Long id = Long.parseLong(cursor.getString(cursor.getColumnIndex("id")));
             String name = cursor.getString(cursor.getColumnIndex("name"));
             Long idCreator = Long.parseLong(cursor.getString(cursor.getColumnIndex("id_user_creator")));
@@ -142,6 +148,35 @@ public class DBManager {
 
         }
         return tests;
+    }
+
+    private Level loadLevel(Long idLevel) {
+        SQLiteDatabase database = helper.getWritableDatabase();
+        Cursor cursor = database.query("levels", null, "id = '" + idLevel + "'",null,null,null,null);
+        cursor.moveToNext();
+        Level level = new Level(Long.parseLong(cursor.getString(cursor.getColumnIndex("id"))),
+                cursor.getString(cursor.getColumnIndex("name")));
+        return level;
+    }
+
+    private Topic loadTopic(Long idTopic) {
+        SQLiteDatabase database = helper.getWritableDatabase();
+        Cursor cursor = database.query("topics", null, "id = '" + idTopic + "'",null,null,null,null);
+        cursor.moveToNext();
+        Topic topic = new Topic(Long.parseLong(cursor.getString(cursor.getColumnIndex("id"))),
+                cursor.getString(cursor.getColumnIndex("name")),
+                Long.parseLong(cursor.getString(cursor.getColumnIndex("id_programming_language"))));
+        return topic;
+    }
+
+    private ProgrammingLanguage loadProgrammingLanguage(Long idProgrammingLanguage) {
+        SQLiteDatabase database = helper.getWritableDatabase();
+        Cursor cursor = database.query("programming_languages", null,
+                "id = '" + idProgrammingLanguage  + "'", null,null,null,null);
+        cursor.moveToNext();
+        ProgrammingLanguage programmingLanguage1 = new ProgrammingLanguage(Long.parseLong(cursor.getString(cursor.getColumnIndex("id"))),
+                cursor.getString(cursor.getColumnIndex("name")));
+        return programmingLanguage1;
     }
 
     private Level loadLevel(String levelStr) {

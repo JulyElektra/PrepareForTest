@@ -16,6 +16,7 @@ import com.example.elekt.preparefortest.Model.Model;
 import com.example.elekt.preparefortest.Model.Test;
 import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
+import com.example.elekt.preparefortest.View.Adaptors.RecyclerAdaptor;
 import com.example.elekt.preparefortest.View.Fragments.TestsListFragmentRecycler;
 
 import java.util.Collection;
@@ -25,6 +26,11 @@ import java.util.Collection;
  */
 
 public class MainScreen extends Activity {
+    Spinner s1;
+    Spinner s2;
+    Spinner s3;
+    Fragment fragment;
+
 
     /** Called when the activity is first created. */
     @Override
@@ -39,22 +45,26 @@ public class MainScreen extends Activity {
         String[] topics = getNames(model.getAllTopics());
         setSpinners(R.id.spinnerChooseTopic, topics, "Choose topic");
 
-        Spinner s3 = (Spinner)findViewById(R.id.spinnerChooseTopic);
-        Spinner s2 = (Spinner)findViewById(R.id.spinnerChooseLevel);
-        Spinner s1 = (Spinner)findViewById(R.id.spinnerChooseProgLang);
-        Collection<Test> tests = new Model(MainScreen.this).getTests(s1.getSelectedItem().toString(),
-                s2.getSelectedItem().toString(), s3.getSelectedItem().toString());
-//        ((TestsListFragmentRecycler) fragment).setTests(tests);
-        TestsManager.setTestsCurrent(tests);
+        s3 = (Spinner)findViewById(R.id.spinnerChooseTopic);
+        s2 = (Spinner)findViewById(R.id.spinnerChooseLevel);
+        s1 = (Spinner)findViewById(R.id.spinnerChooseProgLang);
+
+        getData(s1, s2, s3);
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = new TestsListFragmentRecycler();
+        fragment = new TestsListFragmentRecycler();
 
 
         fragmentTransaction.add(R.id.fragmentContainer, fragment, "frag_teg");
         fragmentTransaction.commit();
 
+    }
+
+    private void getData(Spinner s1, Spinner s2, Spinner s3) {
+        Collection<Test> tests = new Model(MainScreen.this).getTests(s1.getSelectedItem().toString(),
+                s2.getSelectedItem().toString(), s3.getSelectedItem().toString());
+        TestsManager.setTestsCurrent(tests);
     }
 
     private String[] getNames(Collection<? extends INameable> items) {
@@ -82,6 +92,8 @@ public class MainScreen extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
+                getData(s1, s2, s3);
+                ((TestsListFragmentRecycler) fragment).getAdaptor().updateList(TestsManager.getTestsCurrent());
                 Toast.makeText(getBaseContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
             }
             @Override

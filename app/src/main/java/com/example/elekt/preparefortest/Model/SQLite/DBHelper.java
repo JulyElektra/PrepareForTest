@@ -49,10 +49,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 "name TEXT NOT NULL," +
                 "id_programming_language INTEGER NOT NULL, " +
                 "FOREIGN KEY(id_programming_language) REFERENCES programming_languages(id));");
-        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('All', 0);");
-        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('Design patterns', 1);");
-        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('JVM', 2);");
-        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('Properties', 3);");
+        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('All', 1);");
+        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('Design patterns', 2);");
+        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('JVM', 3);");
+        db.execSQL("INSERT INTO topics(name, id_programming_language) VALUES('Properties', 4);");
 
 
         db.execSQL("CREATE TABLE users (" +
@@ -64,16 +64,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO users(login, password) VALUES('yuliya', '123');");
         db.execSQL("INSERT INTO users(login, password) VALUES('q', 'q');");
 
-//        private Long id;
-//        private Integer successfullyPassedPercentage = 90;
-//        private String name;
-//        private ProgrammingLanguage programmingLanguage;
-//        private Topic topic;
-//        private Level level;
-//        private ArrayList<Task> tasks = new ArrayList<>();
-//        private Integer timeLimitsMin;
-//        private User creator;
-//        private Boolean isApproved;
 
         db.execSQL("CREATE TABLE tests (" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
@@ -90,11 +80,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(id_user_creator) REFERENCES users(id)," +
                 "FOREIGN KEY(id_programming_language) REFERENCES programming_languages(id));");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Abstract Factory', 'TRUE', 1, 2, 1, 2, 20);");
+                "VALUES(90, 'Abstract Factory', 'TRUE', 1, 2, 2, 2, 20);");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Singleton', 'TRUE', 1, 3, 1, 3, 45);");
+                "VALUES(90, 'Singleton', 'TRUE', 1, 3, 2, 3, 45);");
         db.execSQL("INSERT INTO tests(successfully_passed_percentage, name, is_approved, id_user_creator, id_programming_language, id_topic,id_level,time_limits_min ) " +
-                "VALUES(90, 'Builder', 'TRUE', 1, 4, 1, 4, 60);");
+                "VALUES(90, 'Builder', 'TRUE', 1, 4, 2, 4, 60);");
 
         db.execSQL("CREATE TABLE tasks (" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +

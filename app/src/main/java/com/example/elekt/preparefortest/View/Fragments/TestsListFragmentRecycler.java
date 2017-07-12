@@ -28,7 +28,12 @@ public class TestsListFragmentRecycler extends Fragment {
     RecyclerView.LayoutManager manager;
     Context context;
     View view;
-//    Collection<Test> tests;
+
+    public RecyclerAdaptor getAdaptor() {
+        return adaptor;
+    }
+
+    //    Collection<Test> tests;
 //
 //    public void setTests(Collection<Test> tests) {
 //        this.tests = tests;
@@ -40,7 +45,10 @@ public class TestsListFragmentRecycler extends Fragment {
         view = inflater.inflate(R.layout.tests_list_fragment_recycler, container, false);
         context = view.getContext();
         Collection<Test> tests = TestsManager.getTestsCurrent();
-        adaptor = new RecyclerAdaptor(tests);
+        if (tests != null) {
+            adaptor = new RecyclerAdaptor(tests);
+        }
+//        adaptor.notifyDataSetChanged();
         manager = new LinearLayoutManager(this.getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerForTestsList);
         recyclerView.setLayoutManager(manager);
