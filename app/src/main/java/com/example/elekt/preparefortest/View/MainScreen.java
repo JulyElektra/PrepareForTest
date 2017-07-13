@@ -16,7 +16,6 @@ import com.example.elekt.preparefortest.Model.Model;
 import com.example.elekt.preparefortest.Model.Test;
 import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
-import com.example.elekt.preparefortest.View.Adaptors.RecyclerAdaptor;
 import com.example.elekt.preparefortest.View.Fragments.TestsListFragmentRecycler;
 
 import java.util.Collection;
@@ -77,9 +76,6 @@ public class MainScreen extends Activity {
         return itemNames;
     }
 
-    public void onClickSearch(View view) {
-
-    }
 
     private void setSpinners(int id, String[] dataSet, String title) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dataSet);

@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import com.example.elekt.preparefortest.Model.Test;
 import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
-import com.example.elekt.preparefortest.View.Adaptors.RecyclerAdaptor;
+import com.example.elekt.preparefortest.View.Adaptors.tests.RecyclerAdaptorListTests;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -24,12 +23,12 @@ import java.util.Collection;
 
 public class TestsListFragmentRecycler extends Fragment {
     RecyclerView recyclerView;
-    RecyclerAdaptor adaptor;
+    RecyclerAdaptorListTests adaptor;
     RecyclerView.LayoutManager manager;
     Context context;
     View view;
 
-    public RecyclerAdaptor getAdaptor() {
+    public RecyclerAdaptorListTests getAdaptor() {
         return adaptor;
     }
 
@@ -46,7 +45,7 @@ public class TestsListFragmentRecycler extends Fragment {
         context = view.getContext();
         Collection<Test> tests = TestsManager.getTestsCurrent();
         if (tests != null) {
-            adaptor = new RecyclerAdaptor(tests);
+            adaptor = new RecyclerAdaptorListTests(tests);
         }
 //        adaptor.notifyDataSetChanged();
         manager = new LinearLayoutManager(this.getActivity());
