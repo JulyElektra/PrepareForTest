@@ -25,6 +25,6 @@ public class Tasks extends Activity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int container = R.id.tasksFragmentContainer;
         fragmentTransaction.add(container, fragment, "fragm_tasks");
-        fragmentTransaction.commit();
+//        fragmentTransaction.commit();
     }
 }

@@ -13,22 +13,71 @@ import com.example.elekt.preparefortest.R;
  */
 
 public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
-    TextView numOfQuestions;
-    TextView questionText;
-    ListView answers;
-    Button previousQuestion;
-    Button nextQuestion;
-    Button finishTest;
+    private TextView numOfQuestion;
+    private TextView questionText;
+    private ListView answers;
+    private Button previousQuestion;
+    private Button nextQuestion;
+    private Button finishTest;
 
 
     public RecyclerHolderListTasks(View itemView) {
         super(itemView);
-        numOfQuestions = (TextView) itemView.findViewById(R.id.questionCounter);
+        numOfQuestion = (TextView) itemView.findViewById(R.id.questionCounter);
         questionText = (TextView) itemView.findViewById(R.id.questionText);
         answers = (ListView) itemView.findViewById(R.id.listAnswers);
         previousQuestion = (Button) itemView.findViewById(R.id.buttonPreviousQuestion);
         nextQuestion = (Button) itemView.findViewById(R.id.buttonNextQuestion);
         finishTest = (Button) itemView.findViewById(R.id.buttonFinishTest);
 
+    }
+
+    public TextView getNumOfQuestion() {
+        return numOfQuestion;
+    }
+
+    public TextView getQuestionText() {
+        return questionText;
+    }
+
+    public ListView getAnswers() {
+        return answers;
+    }
+
+    public Button getPreviousQuestion() {
+        return previousQuestion;
+    }
+
+    public Button getNextQuestion() {
+        return nextQuestion;
+    }
+
+    public Button getFinishTest() {
+        return finishTest;
+    }
+
+
+    public void setNumOfQuestion(TextView numOfQuestion) {
+        this.numOfQuestion = numOfQuestion;
+    }
+
+    public void setQuestionText(TextView questionText) {
+        this.questionText = questionText;
+    }
+
+    public void setAnswers(ListView answers) {
+        this.answers = answers;
+    }
+
+    public void setPreviousQuestion(Button previousQuestion) {
+        this.previousQuestion = previousQuestion;
+    }
+
+    public void setNextQuestion(Button nextQuestion) {
+        this.nextQuestion = nextQuestion;
+    }
+
+    public void setFinishTest(Button finishTest) {
+        this.finishTest = finishTest;
     }
 }

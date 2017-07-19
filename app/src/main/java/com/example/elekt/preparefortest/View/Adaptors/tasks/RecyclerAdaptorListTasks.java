@@ -1,6 +1,7 @@
 package com.example.elekt.preparefortest.View.Adaptors.tasks;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,17 @@ import com.example.elekt.preparefortest.Model.Task;
 import com.example.elekt.preparefortest.R;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by elekt on 13.07.2017.
  */
 
 public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolderListTasks> {
-    Collection<Task> tasks;
+    private Collection<Task> tasks;
+    private RecyclerHolderListTasks holder;
+    private RecyclerView recyclerView;
+
 
     public RecyclerAdaptorListTasks(Collection<Task> tasks) {
         this.tasks = tasks;
@@ -32,39 +37,61 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerHolderListTasks holder, int position) {
-        holder.numOfQuestions.setText("1");
-        holder.questionText.setText("2");
+    public void onBindViewHolder(final RecyclerHolderListTasks holder, int position) {
+        this.holder = holder;
+        Task currentTask = (Task) tasks.toArray()[position];
+        int currentTaskNumber = position + 1;
+        holder.getNumOfQuestion().setText(currentTaskNumber + "/" + tasks.size());
+        if (currentTaskNumber == 1) {
+            holder.getPreviousQuestion().setEnabled(false);
+        }
+        if (currentTaskNumber == tasks.size()) {
+            holder.getNextQuestion().setEnabled(false);
+        }
+        holder.getQuestionText().setText(currentTask.getQuestion());
 
-        //TODO
-        String[] answers = {"ww", "dd"};
-        Context c = null;
+        Map<String, Boolean> answersMap = currentTask.getPossibleAnswers();
+        String[] answers = new String[answersMap.size()];
+        currentTask.getPossibleAnswers().keySet().toArray(answers);
 
+        ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(), R.layout.task_answer_in_list, R.id.answerItem, answers);
+        holder.getAnswers().setAdapter(adapter);
 
-        ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(), R.layout.task_answer_in_list, answers);
-        holder.answers.setAdapter(adapter);
-        holder.previousQuestion.setOnClickListener(new View.OnClickListener() {
+        holder.getPreviousQuestion().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                recyclerView.scrollToPosition(getCurrentNumber() - 1);
             }
         });
-        holder.nextQuestion.setOnClickListener(new View.OnClickListener() {
+        holder.getNextQuestion().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                recyclerView.scrollToPosition(getCurrentNumber() + 1);
             }
         });
-        holder.finishTest.setOnClickListener(new View.OnClickListener() {
+        holder.getFinishTest().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                
             }
         });
+    }
+
+    private int getCurrentNumber() {
+        String s = holder.getNumOfQuestion().getText().toString();
+        int currentNumber = Integer.parseInt(s.split("/")[0]) - 1;
+        return currentNumber;
     }
 
     @Override
     public int getItemCount() {
         return tasks.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
+
     }
 }

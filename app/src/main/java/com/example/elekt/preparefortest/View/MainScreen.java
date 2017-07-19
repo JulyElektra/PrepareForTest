@@ -57,6 +57,7 @@ public class MainScreen extends Activity {
 
         fragmentTransaction.add(R.id.fragmentContainer, fragment, "frag_teg");
         fragmentTransaction.commit();
+        
 
     }
 

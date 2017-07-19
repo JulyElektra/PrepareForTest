@@ -13,6 +13,7 @@ import com.example.elekt.preparefortest.Model.Task;
 import com.example.elekt.preparefortest.Presenter.TasksManager;
 import com.example.elekt.preparefortest.R;
 import com.example.elekt.preparefortest.View.Adaptors.tasks.RecyclerAdaptorListTasks;
+import com.example.elekt.preparefortest.View.Adaptors.tasks.RecyclerHolderListTasks;
 
 import java.util.Collection;
 
@@ -22,6 +23,8 @@ import java.util.Collection;
 
 public class TasksListFragmentRecycler extends Fragment {
     RecyclerView recyclerView;
+    private RecyclerHolderListTasks holder;
+
 
     @Nullable
     @Override
@@ -33,9 +36,12 @@ public class TasksListFragmentRecycler extends Fragment {
         if (tasks != null) {
             RecyclerAdaptorListTasks adaptor = new RecyclerAdaptorListTasks(tasks);
             recyclerView.setAdapter(adaptor);
+
         }
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity(),  LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
+
+
         return view;
     }
 }

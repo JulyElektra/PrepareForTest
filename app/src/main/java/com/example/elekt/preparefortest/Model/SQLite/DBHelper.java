@@ -101,7 +101,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "VALUES('How are you?', 'Great explanation!', 'TRUE', 1, 1);");
         db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
                 "VALUES('Will you come?', 'You are bad boy!', 'FALSE', 1, 1);");
-
+        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
+                "VALUES('How old are you?', 'You lie', 'FALSE', 1, 1);");
 
         db.execSQL("CREATE TABLE answers (" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
@@ -112,6 +113,18 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('True', 'TRUE', 1);");
         db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('False', 'FALSE', 1);");
         db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('Compilation error', 'FALSE', 1);");
+
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('Good','True',  2);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('Bed','False',  2);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('Do not know', 'FALSE', 2);");
+
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('Yes','True', 3);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('No','False',  3);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('May be', 'FALSE', 3);");
+
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('11','True', 4);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('10','False',  4);");
+        db.execSQL("INSERT INTO answers(answer, is_correct, id_task) VALUES('4444', 'FALSE', 4);");
     }
 
     @Override
