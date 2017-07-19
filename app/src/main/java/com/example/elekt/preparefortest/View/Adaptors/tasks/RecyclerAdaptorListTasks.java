@@ -1,13 +1,12 @@
 package com.example.elekt.preparefortest.View.Adaptors.tasks;
 
-import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.example.elekt.preparefortest.Model.Task;
 import com.example.elekt.preparefortest.R;
@@ -31,7 +30,8 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
 
     @Override
     public RecyclerHolderListTasks onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_item_in_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_item_in_list,
+                parent, false);
         RecyclerHolderListTasks recyclerHolderListTasks = new RecyclerHolderListTasks(view);
         return recyclerHolderListTasks;
     }
@@ -54,31 +54,36 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         String[] answers = new String[answersMap.size()];
         currentTask.getPossibleAnswers().keySet().toArray(answers);
 
-        ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(), R.layout.task_answer_in_list, R.id.answerItem, answers);
+        ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(),
+                R.layout.task_answer_in_list, R.id.answerItem, answers);
         holder.getAnswers().setAdapter(adapter);
 
         holder.getPreviousQuestion().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recyclerView.scrollToPosition(getCurrentNumber() - 1);
+                recyclerView.scrollToPosition(getCurrentNumber(v) - 1);
+
+
             }
         });
         holder.getNextQuestion().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recyclerView.scrollToPosition(getCurrentNumber() + 1);
+
+                recyclerView.scrollToPosition(getCurrentNumber(v) + 1);
             }
         });
         holder.getFinishTest().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
     }
 
-    private int getCurrentNumber() {
-        String s = holder.getNumOfQuestion().getText().toString();
+    private int getCurrentNumber(View v) {
+        View vp = (View) v.getParent().getParent();
+        String s = ((TextView) vp.findViewById(R.id.questionCounter)).getText().toString();
         int currentNumber = Integer.parseInt(s.split("/")[0]) - 1;
         return currentNumber;
     }
