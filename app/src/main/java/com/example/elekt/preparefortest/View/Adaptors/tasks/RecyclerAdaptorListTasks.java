@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.elekt.preparefortest.Model.Task;
@@ -23,6 +24,9 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
     private RecyclerHolderListTasks holder;
     private RecyclerView recyclerView;
 
+    public RecyclerHolderListTasks getHolder() {
+        return holder;
+    }
 
     public RecyclerAdaptorListTasks(Collection<Task> tasks) {
         this.tasks = tasks;
@@ -49,6 +53,7 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
             holder.getNextQuestion().setEnabled(false);
         }
         holder.getQuestionText().setText(currentTask.getQuestion());
+        holder.getCodeChunks().setText(currentTask.getCodeChunk());
 
         Map<String, Boolean> answersMap = currentTask.getPossibleAnswers();
         String[] answers = new String[answersMap.size()];
@@ -57,6 +62,7 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(),
                 R.layout.task_answer_in_list, R.id.answerItem, answers);
         holder.getAnswers().setAdapter(adapter);
+
 
         holder.getPreviousQuestion().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +79,12 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
                 recyclerView.scrollToPosition(getCurrentNumber(v) + 1);
             }
         });
-        holder.getFinishTest().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        holder.getFinishTest().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
     private int getCurrentNumber(View v) {

@@ -22,9 +22,16 @@ import java.util.Collection;
  */
 
 public class TasksListFragmentRecycler extends Fragment {
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private RecyclerHolderListTasks holder;
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public RecyclerHolderListTasks getHolder() {
+        return holder;
+    }
 
     @Nullable
     @Override
@@ -36,10 +43,12 @@ public class TasksListFragmentRecycler extends Fragment {
         if (tasks != null) {
             RecyclerAdaptorListTasks adaptor = new RecyclerAdaptorListTasks(tasks);
             recyclerView.setAdapter(adaptor);
+            holder = adaptor.getHolder();
 
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity(),  LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
+
 
 
         return view;

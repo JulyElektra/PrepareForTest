@@ -14,8 +14,9 @@ public class Task {
     private String explanation;
     private User creator;
     private Boolean isApproved;
+    private String codeChunk;
 
-    public Task(Long id, String question, Map<String, Boolean> possibleAnswers, String explanation, User creator, Boolean isApproved) {
+    public Task(Long id, String question, Map<String, Boolean> possibleAnswers, String explanation, User creator, Boolean isApproved, String codeChunk) {
         this.id = id;
         this.question = question;
         this.explanation = explanation;
@@ -25,6 +26,11 @@ public class Task {
             this.possibleAnswers = new HashMap<>();
         } else {
             this.possibleAnswers = possibleAnswers;
+        }
+        if (codeChunk != null) {
+            this.codeChunk = codeChunk;
+        } else {
+            this.codeChunk = "";
         }
     }
 
@@ -70,5 +76,9 @@ public class Task {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+
+    public String getCodeChunk() {
+        return codeChunk;
     }
 }

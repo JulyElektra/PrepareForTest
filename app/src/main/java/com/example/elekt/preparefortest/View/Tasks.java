@@ -6,8 +6,11 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.FragmentTransaction;
+import android.view.View;
 
+import com.example.elekt.preparefortest.Presenter.TestsManager;
 import com.example.elekt.preparefortest.R;
+import com.example.elekt.preparefortest.View.Adaptors.tasks.RecyclerHolderListTasks;
 import com.example.elekt.preparefortest.View.Fragments.TasksListFragmentRecycler;
 
 /**
@@ -15,16 +18,24 @@ import com.example.elekt.preparefortest.View.Fragments.TasksListFragmentRecycler
  */
 
 public class Tasks extends Activity {
+    Fragment fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasks_layout);
-        Fragment fragment = new TasksListFragmentRecycler();
+        fragment = new TasksListFragmentRecycler();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int container = R.id.tasksFragmentContainer;
         fragmentTransaction.add(container, fragment, "fragm_tasks");
 //        fragmentTransaction.commit();
+    }
+
+
+    public void onClickFinish(View view) {
+        TasksListFragmentRecycler fragmentRecycler = (TasksListFragmentRecycler) fragment;
+        RecyclerHolderListTasks holder = fragmentRecycler.getHolder();
+
     }
 }

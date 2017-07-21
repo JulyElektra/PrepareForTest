@@ -26,6 +26,20 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/codeChunks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding"/>
+
+    </android.support.v7.widget.CardView>
+
+
     <ListView
         android:id="@+id/listAnswers"
         android:layout_width="match_parent"
@@ -52,12 +66,7 @@
     </LinearLayout>
 
 
-    <Button
-        android:layout_weight="1"
-        android:id="@+id/buttonFinishTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Finish" />
+
 
 </LinearLayout>
 </android.support.v7.widget.CardView>

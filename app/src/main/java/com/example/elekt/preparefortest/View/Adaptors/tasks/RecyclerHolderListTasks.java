@@ -18,7 +18,8 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
     private ListView answers;
     private Button previousQuestion;
     private Button nextQuestion;
-    private Button finishTest;
+//    private Button finishTest;
+    private TextView codeChunks;
 
 
     public RecyclerHolderListTasks(View itemView) {
@@ -28,8 +29,13 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
         answers = (ListView) itemView.findViewById(R.id.listAnswers);
         previousQuestion = (Button) itemView.findViewById(R.id.buttonPreviousQuestion);
         nextQuestion = (Button) itemView.findViewById(R.id.buttonNextQuestion);
-        finishTest = (Button) itemView.findViewById(R.id.buttonFinishTest);
+//        finishTest = (Button) itemView.findViewById(R.id.buttonFinishTest);
+        codeChunks = (TextView) itemView.findViewById(R.id.codeChunks);
 
+    }
+
+    public TextView getCodeChunks() {
+        return codeChunks;
     }
 
     public TextView getNumOfQuestion() {
@@ -52,9 +58,9 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
         return nextQuestion;
     }
 
-    public Button getFinishTest() {
-        return finishTest;
-    }
+//    public Button getFinishTest() {
+//        return finishTest;
+//    }
 
 
     public void setNumOfQuestion(TextView numOfQuestion) {
@@ -77,7 +83,7 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
         this.nextQuestion = nextQuestion;
     }
 
-    public void setFinishTest(Button finishTest) {
-        this.finishTest = finishTest;
-    }
+//    public void setFinishTest(Button finishTest) {
+//        this.finishTest = finishTest;
+//    }
 }

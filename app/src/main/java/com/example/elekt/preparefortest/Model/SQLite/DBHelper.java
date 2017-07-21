@@ -93,16 +93,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 "is_approved BOOLEAN," +
                 "id_user_creator INTEGER NOT NULL, " +
                 "id_test INTEGER NOT NULL, " +
+                "code_chunk TEXT NOT NULL," +
                 "FOREIGN KEY(id_test) REFERENCES tests(id)," +
                 "FOREIGN KEY(id_user_creator) REFERENCES users(id));");
-        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
-                "VALUES('What will be an output?', 'Because the weather is cold.', 'TRUE', 1, 1);");
-        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
-                "VALUES('How are you?', 'Great explanation!', 'TRUE', 1, 1);");
-        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
-                "VALUES('Will you come?', 'You are bad boy!', 'FALSE', 1, 1);");
-        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test) " +
-                "VALUES('How old are you?', 'You lie', 'FALSE', 1, 1);");
+        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test, code_chunk) " +
+                "VALUES('What will be an output?', 'Because the weather is cold.', 'TRUE', 1, 1, 'System.out.println();');");
+        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test, code_chunk) " +
+                "VALUES('How are you?', 'Great explanation!', 'TRUE', 1, 1, 'class Cat { \n}');");
+        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test, code_chunk) " +
+                "VALUES('Will you come?', 'You are bad boy!', 'FALSE', 1, 1, '');");
+        db.execSQL("INSERT INTO tasks(question, explanation, is_approved, id_user_creator,id_test, code_chunk) " +
+                "VALUES('How old are you?', 'You lie', 'FALSE', 1, 1, '');");
 
         db.execSQL("CREATE TABLE answers (" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +

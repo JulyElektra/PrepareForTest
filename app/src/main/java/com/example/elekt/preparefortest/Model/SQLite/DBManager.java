@@ -218,8 +218,9 @@ public class DBManager {
             String explanation = cursor.getString(cursor.getColumnIndex("explanation"));
             Long idCreator = Long.parseLong(cursor.getString(cursor.getColumnIndex("id_user_creator")));
             User creator = loadUser(idCreator);
-            Boolean isApproved = Boolean.valueOf(cursor.getString(cursor.getColumnIndex("is_approved")));;
-            Task task = new Task(id, question, getPossibleAnswers(id), explanation, creator, isApproved);
+            Boolean isApproved = Boolean.valueOf(cursor.getString(cursor.getColumnIndex("is_approved")));
+            String codeChunk = cursor.getString(cursor.getColumnIndex("code_chunk"));
+            Task task = new Task(id, question, getPossibleAnswers(id), explanation, creator, isApproved, codeChunk);
             tasks.add(task);
 
         }
