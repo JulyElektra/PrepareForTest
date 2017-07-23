@@ -26,6 +26,15 @@ public class TasksManager implements IManager {
         TasksManager.tasksCurrent = test.getTasks();
     }
 
+    public static Task getTaskByIdFromCurrent(int id) {
+        for (Task task: tasksCurrent) {
+            if (task.getId() == id) {
+                return task;
+            }
+        }
+        return null;
+    }
+
     public TasksManager getInstance() {
         return taskManager;
     }

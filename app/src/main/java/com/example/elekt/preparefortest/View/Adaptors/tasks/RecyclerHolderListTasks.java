@@ -20,6 +20,7 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
     private Button nextQuestion;
 //    private Button finishTest;
     private TextView codeChunks;
+    private TextView idTask;
 
 
     public RecyclerHolderListTasks(View itemView) {
@@ -31,7 +32,12 @@ public class RecyclerHolderListTasks extends RecyclerView.ViewHolder {
         nextQuestion = (Button) itemView.findViewById(R.id.buttonNextQuestion);
 //        finishTest = (Button) itemView.findViewById(R.id.buttonFinishTest);
         codeChunks = (TextView) itemView.findViewById(R.id.codeChunks);
+        idTask = (TextView) itemView.findViewById(R.id.idTask);
 
+    }
+
+    public TextView getIdTask() {
+        return idTask;
     }
 
     public TextView getCodeChunks() {

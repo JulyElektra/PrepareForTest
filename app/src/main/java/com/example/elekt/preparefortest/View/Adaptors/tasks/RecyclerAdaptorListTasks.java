@@ -56,6 +56,7 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         if (currentTaskNumber == tasks.size()) {
             holder.getNextQuestion().setEnabled(false);
         }
+        holder.getIdTask().setText(currentTask.getId() + "");
         holder.getQuestionText().setText(currentTask.getQuestion());
         holder.getCodeChunks().setText(currentTask.getCodeChunk());
 
@@ -64,7 +65,7 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         currentTask.getPossibleAnswers().keySet().toArray(answers);
 
         ListAdapter adapter = new ArrayAdapter<String>(holder.itemView.getContext(),
-                R.layout.task_answer_in_list, R.id.answerItem, answers);
+                R.layout.task_answer_in_list, R.id.answerCheckBox, answers);
         holder.getAnswers().setAdapter(adapter);
 
 
