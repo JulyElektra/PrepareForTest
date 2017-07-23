@@ -6,10 +6,15 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.elekt.preparefortest.Presenter.TestsManager;
+import com.example.elekt.preparefortest.Model.ProgrammingLanguage;
 import com.example.elekt.preparefortest.R;
+import com.example.elekt.preparefortest.View.Adaptors.tasks.RecyclerAdaptorListTasks;
 import com.example.elekt.preparefortest.View.Adaptors.tasks.RecyclerHolderListTasks;
 import com.example.elekt.preparefortest.View.Fragments.TasksListFragmentRecycler;
 
@@ -29,13 +34,33 @@ public class Tasks extends Activity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int container = R.id.tasksFragmentContainer;
         fragmentTransaction.add(container, fragment, "fragm_tasks");
-//        fragmentTransaction.commit();
     }
 
 
     public void onClickFinish(View view) {
-        TasksListFragmentRecycler fragmentRecycler = (TasksListFragmentRecycler) fragment;
-        RecyclerHolderListTasks holder = fragmentRecycler.getHolder();
+        if (fragment != null ) {
+            View parent = (View) view.getParent();
+            RecyclerView recycler = (RecyclerView) parent.findViewById(R.id.taskRecyclerView);
+            RecyclerView.Adapter adapter = recycler.getAdapter();
+            int numElements = adapter.getItemCount();
+            for (int position = 0; position < numElements; position++) {
+                RecyclerView.ViewHolder currentViewHolder = recycler.findViewHolderForAdapterPosition(position);
+                RecyclerHolderListTasks cvh = (RecyclerHolderListTasks) currentViewHolder;
 
+                ListView listAnswers = (ListView) cvh.getAnswers();
+                int numOfAnswers = listAnswers.getAdapter().getCount();
+                for (int answerNumber = 0; answerNumber < numOfAnswers; answerNumber++) {
+                    String t = (String) listAnswers.getAdapter().getItem(answerNumber);
+                    String c = listAnswers.getAdapter().toString();
+//                    String c = checkAnswer.isChecked() + "";
+//                    TextView textAnswer = (TextView) v.findViewById(R.id.answerItem);
+//                    String t = textAnswer.getText().toString();
+                }
+
+            }
+
+
+            System.out.println("!!!!!!!!!!!!!" + numElements);
+        }
     }
 }

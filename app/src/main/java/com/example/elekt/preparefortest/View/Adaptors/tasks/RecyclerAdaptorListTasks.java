@@ -28,6 +28,10 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         return holder;
     }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
     public RecyclerAdaptorListTasks(Collection<Task> tasks) {
         this.tasks = tasks;
     }
@@ -105,4 +109,6 @@ public class RecyclerAdaptorListTasks extends RecyclerView.Adapter<RecyclerHolde
         this.recyclerView = recyclerView;
 
     }
+
+
 }

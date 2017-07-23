@@ -49,7 +49,7 @@ public class TestsListFragmentRecycler extends Fragment {
         }
 //        adaptor.notifyDataSetChanged();
         manager = new LinearLayoutManager(this.getActivity());
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerForTestsList);
+        recyclerView = (RecyclerView) view.findViewById(R.id.testsRecyclerView);
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adaptor);

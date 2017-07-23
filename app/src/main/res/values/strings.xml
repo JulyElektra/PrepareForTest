@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PrepareForTest</string>
+    <string name="previous_task">Previous</string>
+    <string name="next_task">Next</string>
+    <string name="finish_test">Finish</string>
 </resources>
